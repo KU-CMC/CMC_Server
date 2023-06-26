@@ -2,23 +2,30 @@ package com.sctk.cmc.controller.member.product.dto;
 
 import com.sctk.cmc.domain.Designer;
 import com.sctk.cmc.domain.Product;
-import com.sctk.cmc.service.designer.product.dto.DesignerProductGetInfoResponse;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Getter
-@SuperBuilder
-public class MemberProductGetInfoResponse extends DesignerProductGetInfoResponse {
-    private Boolean liked;
+@Builder
+public class LikedProductInfoResponse {
+    private Long productId;
+    private String name;
+    private int price;
+    private List<String> descriptionImgList;
+    private Long designerId;
+    private String designerName;
+    private String designerProfileImgUrl;
+    private boolean liked;
 
-    public static MemberProductGetInfoResponse of(Product product, Designer designer,
+    public static LikedProductInfoResponse of(Product product, Designer designer,
                                                   List<String> descriptionImgList, Boolean liked){
 
-        return MemberProductGetInfoResponse.builder()
+        return LikedProductInfoResponse.builder()
                 .productId(product.getId())
                 .name(product.getName())
+                .price(product.getPrice())
                 .descriptionImgList(descriptionImgList)
                 .designerId(designer.getId())
                 .designerName(designer.getName())
@@ -26,6 +33,4 @@ public class MemberProductGetInfoResponse extends DesignerProductGetInfoResponse
                 .liked(liked)
                 .build();
     }
-
-
 }
