@@ -7,7 +7,7 @@ import com.sctk.cmc.controller.common.dto.ProfileImgPostResponse;
 import com.sctk.cmc.controller.designer.dto.LikedDesignerInfoResponse;
 import com.sctk.cmc.controller.member.dto.*;
 import com.sctk.cmc.controller.member.product.dto.LikeProductGetExistenceResponse;
-import com.sctk.cmc.controller.member.product.dto.MemberProductGetInfoResponse;
+import com.sctk.cmc.controller.member.product.dto.LikedProductInfoResponse;
 import com.sctk.cmc.domain.Designer;
 import com.sctk.cmc.domain.Product;
 import com.sctk.cmc.service.member.MemberService;
@@ -18,7 +18,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -120,9 +119,9 @@ public class MemberController {
 
     @GetMapping("/likes/product")
     @Operation(summary = "찜한 상품 조회", description = "좋아요 처리가 된 상품을 조회합니다.")
-    public BaseResponse<List<MemberProductGetInfoResponse>> getAllLikedProduct() {
+    public BaseResponse<List<LikedProductInfoResponse>> getAllLikedProduct() {
 
-        List<MemberProductGetInfoResponse> responses = memberProductService.retrieveAllInfoById(getMemberId());
+        List<LikedProductInfoResponse> responses = memberProductService.retrieveAllInfoById(getMemberId());
         return new BaseResponse<>(responses);
     }
 

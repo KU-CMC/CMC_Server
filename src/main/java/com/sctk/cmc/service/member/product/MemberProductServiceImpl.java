@@ -2,7 +2,7 @@ package com.sctk.cmc.service.member.product;
 
 import com.sctk.cmc.common.exception.CMCException;
 import com.sctk.cmc.controller.member.product.dto.LikeProductGetExistenceResponse;
-import com.sctk.cmc.controller.member.product.dto.MemberProductGetInfoResponse;
+import com.sctk.cmc.controller.member.product.dto.LikedProductInfoResponse;
 import com.sctk.cmc.domain.DescriptionImg;
 import com.sctk.cmc.domain.Member;
 import com.sctk.cmc.domain.Product;
@@ -35,16 +35,16 @@ public class MemberProductServiceImpl implements MemberProductService {
     }
 
     @Override
-    public MemberProductGetInfoResponse retrieveInfoById(Long memberId, Long productId) {
+    public LikedProductInfoResponse retrieveInfoById(Long memberId, Long productId) {
         Product product = retrieveById(productId);
 
         List<String> descriptionImgList = convertToUrlList(product);
 
-        return MemberProductGetInfoResponse.of(product, product.getDesigner(), descriptionImgList, true);
+        return LikedProductInfoResponse.of(product, product.getDesigner(), descriptionImgList, true);
     }
 
     @Override
-    public List<MemberProductGetInfoResponse> retrieveAllInfoById(Long memberId) {
+    public List<LikedProductInfoResponse> retrieveAllInfoById(Long memberId) {
         Member member = memberService.retrieveById(memberId);
 
         return member.getProductLikes()
