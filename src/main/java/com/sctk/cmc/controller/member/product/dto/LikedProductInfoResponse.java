@@ -13,6 +13,7 @@ public class LikedProductInfoResponse {
     private Long productId;
     private String name;
     private int price;
+    private int likes;
     private List<String> descriptionImgList;
     private Long designerId;
     private String designerName;
@@ -26,6 +27,7 @@ public class LikedProductInfoResponse {
                 .productId(product.getId())
                 .name(product.getName())
                 .price(product.getPrice())
+                .likes(product.getLikeCount())
                 .descriptionImgList(descriptionImgList)
                 .designerId(designer.getId())
                 .designerName(designer.getName())
